@@ -1,6 +1,6 @@
 import tkinter
 from tkinter import DISABLED, LEFT, ttk
-import ntkutils
+from ntkutils import ntkutils
 import webbrowser
 import cfgtools
 import sv_ttk
