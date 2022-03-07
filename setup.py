@@ -1,22 +1,19 @@
-from sys import executable
-from unicodedata import name
-import cx_Freeze
+from cx_Freeze import Executable, setup
 
 executables = [
-    cx_Freeze.Executable(
+    Executable(
         "main.py",
         base="Win32GUI",
         icon="./assets/icon.ico",
-        shortcut_name="Portal Launcher",
-        target_name="PortalLauncher.exe",
-        shortcut_dir="ProgramMenuFolder",
+        shortcutName="Portal Launcher",
+        shortcut_dir="DesktopFolder",
     )
 ]
 
 build_exe_options = {
     "include_msvcr": True,
     "include_files": (r"./assets"),
-    "includes": ["tkinter", "sv_ttk", "ntkutils", "webbrowser", "cfgtools"],
+    "includes": ["tkinter", "sv_ttk", "ntkutils", "webbrowser"],
 }
 
 bdist_msi_options = {
@@ -25,7 +22,7 @@ bdist_msi_options = {
     "target_name": "PortalLauncher",
 }
 
-cx_Freeze.setup(
+setup(
     name="Portal Launcher",
     version = "0.1",
     description = "A Launcher for portal games and mods!",

@@ -1,11 +1,13 @@
 import tkinter
 from tkinter import DISABLED, LEFT, ttk
-from ntkutils import ntkutils
+import ntkutils
 import webbrowser
-import cfgtools
 import sv_ttk
 
-cfg = cfgtools.init()
+cfg = ntkutils.cfgtools.init({
+    "PortalP_ID": "notfound",
+    "Portal2SM_ID": "notfound",
+})
 
 if cfg["PortalP_ID"] == "notfound" or cfg["Portal2SM_ID"] == "notfound":
     askid = tkinter.Tk()
@@ -22,7 +24,7 @@ if cfg["PortalP_ID"] == "notfound" or cfg["Portal2SM_ID"] == "notfound":
             int(Portal2SM_Entry.get())
             cfg["PortalP_ID"] = PortalP_Entry.get()
             cfg["Portal2SM_ID"] = Portal2SM_Entry.get()
-            cfgtools.SaveCFG(cfg)
+            ntkutils.cfgtools.SaveCFG(cfg)
             askid.destroy()
         except ValueError:
             ntkutils.sv_msgbox(
@@ -67,8 +69,6 @@ if cfg["PortalP_ID"] == "notfound" or cfg["Portal2SM_ID"] == "notfound":
     askid.mainloop()
 
 sv_ttk.inited = False
-
-print(cfg["PortalP_ID"])
 
 root = tkinter.Tk()
 root.iconbitmap("./assets/icon.ico")
