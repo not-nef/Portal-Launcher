@@ -1,2 +1,2 @@
 sv_ttk
-ntkutils>=2.0.0
+ntkutils>=2.2.2
