@@ -1,3 +1,3 @@
 rmdir /Q /S build
 rmdir /Q /S dist
-python setup.py bdist_msi
+pyinstaller src/main.py --onefile --windowed --collect-data sv_ttk
