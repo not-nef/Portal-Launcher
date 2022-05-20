@@ -1,3 +1,3 @@
 rmdir /Q /S build
 rmdir /Q /S dist
-pyinstaller src/main.py --onefile --windowed --collect-data sv_ttk
+pyinstaller src/main.py --onefile --windowed --collect-data sv_ttk --icon "./src/assets/icon.ico"
