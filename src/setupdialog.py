@@ -121,17 +121,23 @@ def detect_ids():
     finish()
 
 def detect_sm():
+    global found
     if os.path.isdir(steamdir) and "sourcemods" in os.listdir(steamdir + "/steamapps"):
         sourcemodsdir_content = os.listdir(steamdir + "/steamapps/sourcemods")
         for mod in sourcemodsdir_content:
             gameinfo = open(steamdir + "/steamapps/sourcemods/" + mod + "/gameinfo.txt")
             gameinfo_content = gameinfo.readlines()
+
             for line in gameinfo_content:
-                if "title" in line:
-                    mod_name = line.split("\"", 1)[1]
-                    mod_name = mod_name.split("\"", 1)[0]
+                if "game" in line and "\"" in line and not "game" in strsplit.inbetween(line, "\"", "\""):
+                    thing = line
+                    break
+
+            for line in gameinfo_content:
                 if "SteamAppId" in line:
-                    if "400" in line or "620" in line: namelist.append(mod_name)
+                    if "400" in line or "620" in line:
+                        namelist.append(strsplit.inbetween(thing, "\"", "\""))
+                        break
         if not namelist:
             nomods()
         else:
